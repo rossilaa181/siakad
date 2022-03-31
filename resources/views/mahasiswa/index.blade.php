@@ -27,6 +27,7 @@
     <tr>
         <th>Nim</th>
         <th>Nama</th>
+        <th>Tanggal Lahir</th>
         <th>Kelas</th>
         <th>Jurusan</th>
         <th width="280px">Action</th>
@@ -36,6 +37,7 @@
 
         <td>{{ $mhs ->nim }}</td>
         <td>{{ $mhs ->nama }}</td>
+        <td>{{ $mhs ->tanggal_lahir }}</td>
         <td>{{ $mhs ->kelas }}</td>
         <td>{{ $mhs ->jurusan }}</td>
         <td>
