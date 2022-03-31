@@ -32,7 +32,7 @@
         <th>Jurusan</th>
         <th width="280px">Action</th>
     </tr>
-    @foreach ($mahasiswa as $mhs)
+    @foreach ($paginate  as $mhs)
     <tr>
 
         <td>{{ $mhs ->nim }}</td>
@@ -53,4 +53,7 @@
     </tr>
     @endforeach
 </table>
+<div class="d-flex justify-content-end">
+    {!! $paginate->links() !!}
+</div>
 @endsection
