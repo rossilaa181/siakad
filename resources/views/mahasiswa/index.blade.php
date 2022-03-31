@@ -5,8 +5,20 @@
         <div class="pull-left mt-2">
             <h2>JURUSAN TEKNOLOGI INFORMASI-POLITEKNIK NEGERI MALANG</h2>
         </div>
-        <div class="float-right mb-3">
-            <a class="btn btn-success" href="{{ route('mahasiswa.create') }}"> Input Mahasiswa</a>
+        <div class="row mt-5 d-flex justify-content-beetwen">           
+            <form method="get" action="{{ route('mahasiswa.index') }}" class="col-7 d-flex justify-content-start">
+                <div class="input-group mb-3">                    
+                    <input type="text" class="form-control" name="search" value="{{ request('search') }}" id="search" placeholder="Keyword Pencarian" aria-label="Keyword Pencarian" aria-describedby="button">
+                    <div class="input-group-append">
+                        <button class="btn btn-dark" type="submit" id="button"> Cari</button>
+                    </div>
+                </div>
+            </form>
+            <div class="col-5 d-flex justify-content-end">
+                <div class="float-right mb-3">
+                    <a class="btn btn-success" href="{{ route('mahasiswa.create') }}"> Input Mahasiswa</a>
+                </div>
+            </div>
         </div>
     </div>
 </div>

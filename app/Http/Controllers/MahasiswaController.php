@@ -10,11 +10,26 @@ class MahasiswaController extends Controller
 {
 
     public function index()
-    {
-        //fungsi eloquent menampilkan data menggunakan pagination
-        $mahasiswa = Mahasiswa::all(); // Mengambil semua isi tabel
-        $paginate = Mahasiswa::orderBy('id_mahasiswa', 'asc')->Paginate(5);
-        return view('mahasiswa.index', ['mahasiswa' => $mahasiswa, 'paginate' => $paginate]);
+    {        
+        //condition use search fiture
+        if (request('search')) {
+            $mahasiswas = Mahasiswa::where('Nim', 'LIKE', '%' . request('search') . '%')
+                ->orWhere('Nama', 'LIKE', '%' . request('search') . '%')
+                ->orWhere('Kelas', 'LIKE', '%' . request('search') . '%')
+                ->orWhere('Jurusan', 'LIKE', '%' . request('search') . '%')
+                ->orWhere('Jenis_Kelamin', 'LIKE', '%' . request('search') . '%')
+                ->orWhere('Email', 'LIKE', '%' . request('search') . '%')
+                ->orWhere('Alamat', 'LIKE', '%' . request('search') . '%')
+                ->orWhere('Tanggal_Lahir', 'LIKE', '%' . request('search') . '%')
+                ->paginate(5);
+
+            return view('mahasiswa.index', ['paginate' => $mahasiswas]);
+        } else {
+            // fungsi menampilkan data dengan menggunkan eloquent
+            $mahasiswa = Mahasiswa::all(); // Mengambil semua isi tabel
+            $paginate = Mahasiswa::orderBy('id_mahasiswa', 'asc')->Paginate(5);
+            return view('mahasiswa.index', ['mahasiswa' => $mahasiswa, 'paginate' => $paginate]);
+        }
     }
 
     public function create()
