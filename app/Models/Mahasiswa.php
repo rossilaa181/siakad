@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Mahasiswa extends Model
 {
     protected $table = 'mahasiswa'; // Eloquent akan membuat model mahasiswa menyimpan record ditabel mahasiswa
-    protected $primaryKey = 'nim'; // Memanggil isi DB Dengan primarykey
+    protected $primaryKey = 'id_mahasiswa'; // Memanggil isi DB Dengan primarykey
     /**
      * The attributes that are mass assignable.
      *
@@ -29,5 +29,11 @@ class Mahasiswa extends Model
     public function kelas()
     {
         return $this->belongsTo(Kelas::class);
+    }
+
+    //Mendefinisikan relasi dengan tabel bantu mahasiswa_matakuliah
+    public function mahasiswa_matakuliah()
+    {
+        return $this->belongsToMany(Mahasiswa_MataKuliah::class);
     }
 }

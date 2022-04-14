@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Mahasiswa;
 use App\Models\Kelas;
+use App\Models\MataKuliah;
+use App\Models\Mahasiswa_MataKuliah;
 use Illuminate\Support\Facades\DB;
 
 class MahasiswaController extends Controller
@@ -16,12 +18,15 @@ class MahasiswaController extends Controller
         if (request('search')) {
             $mahasiswas = Mahasiswa::where('Nim', 'LIKE', '%' . request('search') . '%')
                 ->orWhere('Nama', 'LIKE', '%' . request('search') . '%')
-                ->orWhere('Kelas', 'LIKE', '%' . request('search') . '%')
+                // ->orWhere('Kelas', 'LIKE', '%' . request('search') . '%')
                 ->orWhere('Jurusan', 'LIKE', '%' . request('search') . '%')
                 ->orWhere('Jenis_Kelamin', 'LIKE', '%' . request('search') . '%')
                 ->orWhere('Email', 'LIKE', '%' . request('search') . '%')
                 ->orWhere('Alamat', 'LIKE', '%' . request('search') . '%')
                 ->orWhere('Tanggal_Lahir', 'LIKE', '%' . request('search') . '%')
+                ->orWhereHas('kelas', function ($query) {
+                    $query->where('nama_kelas', 'like', '%' . request('search') . '%');
+                })->with('kelas')
                 ->paginate(5);
 
             return view('mahasiswa.index', ['paginate' => $mahasiswas]);
@@ -166,5 +171,16 @@ class MahasiswaController extends Controller
         Mahasiswa::where('nim', $nim)->delete();
         return redirect()->route('mahasiswa.index')
             ->with('success', 'Mahasiswa Berhasil Dihapus');
+    }
+
+    //menampilkan halaman KHS
+    public function khs($id)
+    {
+
+        $khs = Mahasiswa_MataKuliah::where('mahasiswa_id', $id)
+            ->with('mahasiswa', 'matakuliah')->get();
+        $mhs = Mahasiswa::with('kelas')->where('id_mahasiswa', $id)->first();
+
+        return view('mahasiswa.khs', compact('khs', 'mhs'));
     }
 }

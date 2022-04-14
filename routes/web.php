@@ -19,3 +19,8 @@ Route::get('/', function () {
 });
 
 Route::resource('/mahasiswa', MahasiswaController::class);
+// Route::get('khs', function () {
+//     return view('mahasiswa.khs');
+// });
+
+Route::get('/khsmahasiswa/{id}', [MahasiswaController::class, 'khs'])->name('mahasiswa.khs');
