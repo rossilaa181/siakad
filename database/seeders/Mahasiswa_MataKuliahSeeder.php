@@ -425,6 +425,30 @@ class Mahasiswa_MataKuliahSeeder extends Seeder
                 'nilai_angka' => 85,
                 'nilai_huruf' => 'B',
             ],
+            [
+                'mahasiswa_id' => 31,
+                'matakuliah_id' => 1,
+                'nilai_angka' => 95,
+                'nilai_huruf' => 'A',
+            ],
+            [
+                'mahasiswa_id' => 31,
+                'matakuliah_id' => 2,
+                'nilai_angka' => 93,
+                'nilai_huruf' => 'A',
+            ],
+            [
+                'mahasiswa_id' => 31,
+                'matakuliah_id' => 3,
+                'nilai_angka' => 99,
+                'nilai_huruf' => 'A',
+            ],
+            [
+                'mahasiswa_id' => 31,
+                'matakuliah_id' => 4,
+                'nilai_angka' => 98,
+                'nilai_huruf' => 'A',
+            ],
         ];
 
         Mahasiswa_MataKuliah::insert($datas);

@@ -13,7 +13,8 @@
                         <li class="list-group-item"><b>Kelas: </b>{{ $Mahasiswa->kelas->nama_kelas }}</li>
                         <li class="list-group-item"><b>Jurusan: </b>{{ $Mahasiswa->jurusan }}</li>  
                         <li class="list-group-item"><b>E-mail: </b>{{ $Mahasiswa->email }}</li>
-                        <li class="list-group-item"><b>Alamat: </b>{{ $Mahasiswa->alamat }}</li>                      
+                        <li class="list-group-item"><b>Alamat: </b>{{ $Mahasiswa->alamat }}</li>  
+                        <img style="margin: 30px 0px -20px 0px;" width="80px" src="{{ $Mahasiswa->foto==''? asset('images/default-user.png'): asset('storage/'.$Mahasiswa->foto) }}" class="rounded mx-auto d-block" alt="">                    
                     </ul>
                 </div>
                 <a class="btn btn-success mt-3" href="{{ route('mahasiswa.index') }}">Kembali</a>

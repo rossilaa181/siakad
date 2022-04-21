@@ -22,7 +22,8 @@ class Mahasiswa extends Model
         'Jenis_Kelamin',
         'Email',
         'Alamat',
-        'Tanggal_Lahir'
+        'Tanggal_Lahir',
+        'Foto'
     ];
 
     //mendefinisikan relasi dengan tabel kelas
